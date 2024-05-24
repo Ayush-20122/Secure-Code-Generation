@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileContentDiv = document.getElementById("fileContent");
     const sitemapContainer = document.getElementById("sitemapContainer");
     const sitemapDiv = document.getElementById("sitemap");
+    const vulnerabilitiesDiv = document.getElementById("vulnerabilities");
     const loadingBar = document.getElementById("loadingBar");
 
     if (!repoUrl) {
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         $(sitemapDiv).jstree(true).refresh();
         sitemapContainer.style.display = "block";
         fileContentDiv.textContent = "";
+        vulnerabilitiesDiv.textContent = "";
         loadingBar.style.display = "none";
       })
       .catch((error) => {
@@ -107,10 +109,21 @@ function fetchFileContent(fileUrl) {
     })
     .then((content) => {
       const fileContentDiv = document.getElementById("fileContent");
+      const vulnerabilitiesDiv = document.getElementById("vulnerabilities");
       fileContentDiv.innerHTML = `<pre><code>${escapeHtml(
         content
       )}</code></pre>`;
       hljs.highlightElement(fileContentDiv.querySelector("code"));
+      fetchVulnerabilities(content)
+        .then((vulnerabilities) => {
+          vulnerabilitiesDiv.innerHTML = `<pre><code>${escapeHtml(
+            vulnerabilities
+          )}</code></pre>`;
+          hljs.highlightElement(vulnerabilitiesDiv.querySelector("code"));
+        })
+        .catch((error) => {
+          vulnerabilitiesDiv.textContent = `Error: ${error.message}`;
+        });
     })
     .catch((error) => {
       document.getElementById(
@@ -119,7 +132,36 @@ function fetchFileContent(fileUrl) {
     });
 }
 
+function fetchVulnerabilities(code) {
+  return new Promise((resolve, reject) => {
+    fetch("/analyze-code", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ code }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Error: ${response.statusText}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.vulnerabilities) {
+          resolve(data.vulnerabilities);
+        } else {
+          reject(new Error("No vulnerabilities data returned."));
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
 function escapeHtml(unsafe) {
+  if (typeof unsafe !== "string") return "";
   return unsafe
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
