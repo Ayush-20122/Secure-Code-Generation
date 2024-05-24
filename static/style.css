@@ -1,0 +1,16 @@
+body {
+  background-color: #171717;
+  color: azure;
+  background-image: url("/static/background_1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+input::placeholder {
+  font-family: "Courier New";
+  color: #343a40;
+}
+
+#Txt {
+  font-family: "Courier New";
+}

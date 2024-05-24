@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Code Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #171717">
+      <div class="nav-container">
+        <img
+          src="/static/Secure_logo_1.png"
+          width="250px"
+          style="padding: 10px 0 10px 10px"
+        />
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3" id="sitemapContainer" style="display: none">
+          <h2 class="my-4" id="Txt">Repository Sitemap</h2>
+          <div id="sitemap"></div>
+        </div>
+        <div
+          class="col-md-9 container"
+          style="background-color: rgba(0, 0, 0, 0.5)"
+        >
+          <h1 class="my-4" id="Txt">Check Code for Vulnerabilities</h1>
+          <form>
+            <div class="mb-3">
+              <label id="Txt">Paste URL Here</label>
+              <input
+                id="repoUrl"
+                type="text"
+                placeholder="Enter GitHub Repo URL"
+                style="width: 100%"
+              />
+              <div id="Txt" class="form-text" style="font-weight: bold">
+                Let's Secure Together
+              </div>
+            </div>
+            <button
+              id="submitBtn"
+              type="submit"
+              class="btn btn-primary"
+              style="font-family: Courier New; font-weight: bold"
+            >
+              Submit
+            </button>
+          </form>
+          <div
+            id="fileContent"
+            class="file-content mt-3"
+            style="color: #cdcdcd"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="loadingBar"
+      style="display: none; height: 5px; background-color: #007bff"
+    ></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <script type="module" src="/static/script.js"></script>
+  </body>
+</html>
