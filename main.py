@@ -19,7 +19,6 @@ def index():
 def read_repo():
     data = request.get_json()
     repo_url = data.get('repoUrl')
-    print(repo_url)
 
     if not repo_url:
         return jsonify({"message": "Repository URL is required"}), 400
