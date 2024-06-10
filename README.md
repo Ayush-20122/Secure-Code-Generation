@@ -43,6 +43,8 @@ This application demonstrates secure code generation using Python. The project s
     set OPENAI_API_KEY='your-openai-api-key'
     ```
 
+
+
    If the above method doesn't work, try the method mentioned below:
 
    Create a `.env` file in the root directory of the project and add your API key:
@@ -50,7 +52,7 @@ This application demonstrates secure code generation using Python. The project s
     echo "OPENAI_API_KEY=your-openai-api-key" > .env
     ```
 
-4. **Load environment variables**:(Optional: only if you're using the second method)
+5. **Load environment variables**:(Optional: only if you're using the second method)
     Ensure that your application is set up to load environment variables from the `.env` file. You can use the `python-dotenv` package for this purpose:
     ```sh
     pip install python-dotenv
@@ -66,7 +68,7 @@ This application demonstrates secure code generation using Python. The project s
     openai_api_key = os.getenv('OPENAI_API_KEY')
     ```
 
-5. **Run the application**:
+6. **Run the application**:
     ```sh
     python main.py
     ```
