@@ -15,19 +15,13 @@ This application demonstrates secure code generation using Python. The project s
 
 ## Setup Instructions
 
-1. **Clone the repository**:
-    ```sh
-    git clone <repository-url>
-    cd Secure-Code-Generation-main
-    ```
-
-2. **Create a virtual environment** (recommended):
+1. **Create a virtual environment** (recommended):
     ```sh
     python -m venv venv
     source venv/bin/activate   # On Windows, use `venv\Scripts\activate`
     ```
 
-3. **Install required packages**:
+2. **Install required packages**:
     You may manually install the necessary packages, using the command given below:
     ```sh
     pip install Flask openai requests
@@ -38,7 +32,7 @@ This application demonstrates secure code generation using Python. The project s
     pip install <package-name>
     ```
 
-4. **Run the application**:
+3. **Run the application**:
     ```sh
     python main.py
     ```
