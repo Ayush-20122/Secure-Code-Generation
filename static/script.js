@@ -1,36 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = document.getElementById("submitBtn");
+  const sitemapContainer = document.getElementById("sitemapContainer");
+  const sitemapDiv = document.getElementById("sitemap");
+  const sitemapLoading = document.getElementById("sitemapLoading");
+
   submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
     const repoUrl = document.getElementById("repoUrl").value;
     const fileContentDiv = document.getElementById("fileContent");
     const fileTitleDiv = document.getElementById("fileTitle");
-    const sitemapContainer = document.getElementById("sitemapContainer");
-    const sitemapDiv = document.getElementById("sitemap");
     const vulnerabilitiesDiv = document.getElementById("vulnerabilities");
     const vulnerabilitiesTitleDiv = document.getElementById(
       "vulnerabilitiesTitle"
     );
-    const sitemapLoading = document.getElementById("sitemapLoading");
 
     if (!repoUrl) {
       fileContentDiv.textContent = "Please enter a GitHub repository URL.";
       return;
     }
 
+    $("#checkVulnerabilityContainer").hide();
+    $("#toggleSitemapBtn").show();
     sitemapLoading.style.display = "flex";
 
     fetchRepoContents(repoUrl)
       .then((contents) => {
         $(sitemapDiv).jstree(true).settings.core.data = contents;
         $(sitemapDiv).jstree(true).refresh();
+        sitemapLoading.style.display = "none";
         sitemapContainer.style.display = "block";
         fileContentDiv.textContent = "";
         fileTitleDiv.textContent = "";
         vulnerabilitiesDiv.textContent = "";
         vulnerabilitiesTitleDiv.textContent = "";
         vulnerabilitiesTitleDiv.style.display = "none";
-        sitemapLoading.style.display = "none";
       })
       .catch((error) => {
         fileContentDiv.textContent = `Error: ${error.message}`;
@@ -62,6 +65,15 @@ document.addEventListener("DOMContentLoaded", () => {
         fetchFileContent(data.node.a_attr.href, data.node.text);
       }
     });
+
+  const toggleSitemapBtn = document.getElementById("toggleSitemapBtn");
+  toggleSitemapBtn.addEventListener("click", () => {
+    if (sitemapContainer.style.display === "none") {
+      sitemapContainer.style.display = "block";
+    } else {
+      sitemapContainer.style.display = "none";
+    }
+  });
 });
 
 function fetchRepoContents(repoUrl) {
@@ -120,6 +132,7 @@ function fetchFileContent(fileUrl, fileName) {
       return response.text();
     })
     .then((content) => {
+      $("#sitemapContainer").hide();
       const fileContentDiv = document.getElementById("fileContent");
       const fileTitleDiv = document.getElementById("fileTitle");
       const vulnerabilitiesDiv = document.getElementById("vulnerabilities");
