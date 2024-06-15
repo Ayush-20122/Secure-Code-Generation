@@ -29,7 +29,14 @@
           src="/static/Secure_logo_1.png"
           width="250px"
           style="padding: 10px 0 10px 10px"
-        />
+        /></br>
+        <button
+          id="toggleSitemapBtn"
+          class="btn btn-secondary mb-3"
+          style="font-family: Courier New; font-weight: bold; display: none;"
+        >
+          Sitemap
+        </button>
       </div>
     </nav>
 
@@ -40,32 +47,35 @@
           <div id="sitemap"></div>
         </div>
         <div
-          class="col-md-9 container"
-          style="background-color: rgba(0, 0, 0, 0.5)"
+          class="col-xl- container-fluid"
+          style="background-color: rgba(0, 0, 0, 0.5);"
         >
-          <h1 class="my-4" id="Txt">Check Code for Vulnerabilities</h1>
-          <form>
-            <div class="mb-3">
-              <label id="Txt">Paste URL Here</label>
-              <input
-                id="repoUrl"
-                type="text"
-                placeholder="Enter GitHub Repo URL"
-                style="width: 100%"
-              />
-              <div id="Txt" class="form-text" style="font-weight: bold">
-                Let's Secure Together
+          <div id="checkVulnerabilityContainer">
+            <h1 class="my-4" id="Txt">Check Code for Vulnerabilities</h1>
+            <form>
+              <div class="mb-3">
+                <label id="Txt">Paste URL Here</label>
+                <input
+                  id="repoUrl"
+                  type="text"
+                  placeholder="Enter GitHub Repo URL"
+                  style="width: 100%"
+                />
+                <div id="Txt" class="form-text" style="font-weight: bold">
+                  Let's Secure Together
+                </div>
               </div>
-            </div>
-            <button
-              id="submitBtn"
-              type="submit"
-              class="btn btn-secondary"
-              style="font-family: Courier New; font-weight: bold"
-            >
-              Submit
-            </button>
-          </form>
+              <button
+                id="submitBtn"
+                type="submit"
+                class="btn btn-secondary"
+                style="font-family: Courier New; font-weight: bold"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+          <div class="container-fluid" style="float: left; width: 700px;;">
           <div
             id="fileTitle"
             class="mt-3"
@@ -81,6 +91,8 @@
             class="file-content mt-3"
             style="color: #cdcdcd"
           ></div>
+        </div>
+        <div class="container-fluid" style="float: right; width: 900px;;">
           <div
             id="vulnerabilitiesTitle"
             class="mt-3"
@@ -92,6 +104,7 @@
             "
           ></div>
           <div id="vulnerabilities" class="mt-3" style="color: #cdcdcd"></div>
+        </div>
         </div>
       </div>
     </div>
